@@ -1,62 +1,23 @@
 <?php
-require_once "koneksi.php";
-require_once "registrasi.php";
-require_once "login.php";
+require_once "funcs/koneksi.php";
+require_once "funcs/registrasi.php";
+require_once "funcs/login.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css"
-          integrity="sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Slothtledos</title>
+    <?php include "templates/head.php"; ?>
 </head>
 
 <body
-    class="antialiased bg-gradient-to-r from-pink-300 via-purple-300   to-indigo-400 font-light text-gray-500">
+    class="antialiased bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 font-light text-gray-500">
 
 <!-- nav bar -->
 <nav class="flex justify-around py-4 bg-white/80
              backdrop-blur-md shadow-md w-full
              fixed top-0 left-0 right-0 z-10">
-
-    <!-- Logo Container -->
-    <div class="flex items-center">
-        <a class="cursor-pointer">
-            <h3 class="text-2xl font-medium font-semibold">
-                Slothtledos
-            </h3>
-        </a>
-    </div>
-
-    <!-- Icon Menu Section -->
-    <div class="flex items-center space-x-5">
-        <!-- Register -->
-        <a class="flex text-gray-600 hover:text-blue-500
-                   cursor-pointer transition-colors duration-300"
-           onclick="toggleDaftar()">
-
-            <i class="fa-solid fa-user-plus"> Daftar</i>
-        </a>
-
-        <!-- Login -->
-        <a class="flex text-gray-600 hover:text-blue-500
-                   cursor-pointer transition-colors duration-300"
-           onclick="toggleLogin()">
-
-            <i class="fa-solid fa-user-astronaut">Masuk</i>
-        </a>
-    </div>
+<?php include "templates/navbar.php"; ?>
 </nav>
 
 <main class="px-10 py-20">
@@ -92,8 +53,7 @@ require_once "login.php";
 </main>
 
 <!--form daftar-->
-<form action="" method="post" id="daftar"
-      class="z-10 overflow-y-auto top-0 w-full left-0 hidden">
+<form action="" method="post" id="daftar" class="z-10 overflow-y-auto top-0 w-full left-0 hidden">
     <div
         class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
@@ -139,8 +99,7 @@ require_once "login.php";
 </form>
 
 <!-- Login form -->
-<form class="z-10 overflow-y-auto top-0 w-full left-0 hidden" id="login"
-      action="" method="post">
+<form class="z-10 overflow-y-auto top-0 w-full left-0 hidden" id="login" action="" method="post">
     <div
         class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
@@ -155,7 +114,7 @@ require_once "login.php";
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
                 <!-- label id -->
-                <label for="email">Username</label>
+                <label for="email">Email</label>
                 <input type="email" class="w-full bg-gray-100 p-2 mt-2 mb-3"
                        id="email" name="email" value="<?php echo $email; ?>" required/>
 
@@ -186,8 +145,7 @@ require_once "login.php";
 </form>
 
 <!--form create-->
-<form class="z-10 overflow-y-auto top-0 w-full left-0 hidden" id="modal"
-      action="" method="post">
+<form class="z-10 overflow-y-auto top-0 w-full left-0 hidden" id="modal" action="" method="post">
     <div
         class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
