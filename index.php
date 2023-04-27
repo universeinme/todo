@@ -17,33 +17,16 @@ require_once "funcs/login.php";
 <nav class="flex justify-around py-4 bg-white/80
              backdrop-blur-md shadow-md w-full
              fixed top-0 left-0 right-0 z-10">
-<?php include "templates/navbar.php"; ?>
+    <?php include "templates/navbar.php"; ?>
 </nav>
 
 <main class="px-10 py-20">
 
-    <!-- grid container -->
-    <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
-        <!-- product card -->
-        <a href="#"
-           class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg hover:opacity-70 rounded-md break-words">
-            <div
-                class="border-gray-300 border-b-2 border-solid flex flex-col relative m-1 px-2">
-                <h2 class="font-semibold">
-                    Judul asdasdaskdoaksodkaoskdokasodkoaskdoaksodk
-                </h2>
-            </div>
-            <div class="px-2 m-1 inline-block align-middle">
-                        <span class="relative">
-                            Isi tododsfsdfsdfPrioritysdfsdfsdfsdfsdfsdfsdfdfsdfsdfdsfsdfsdfsdfsdfsdfsdfdsfsdfsdfsdfsdfd
-                        </span>
-            </div>
-        </a>
-    </div>
+    <!--Todo-->
+    <?php include "templates/todo.php"; ?>
+
     <div class="flex flex-col justify-end items-end fixed select-none sticky">
-        <div
-            class="absolute flex items-center justify-center align-middle top-8">
+        <div class="absolute flex items-center justify-center align-middle top-8">
             <button onclick="toggleCreate()"
                     class="drop-shadow-md bg-white h-10 w-20 rounded-full align-middle font-semibold">
                 Create
@@ -121,7 +104,7 @@ require_once "funcs/login.php";
                 <!-- label pwd -->
                 <label for="password">Password</label>
                 <input type="password" class="w-full bg-gray-100 p-2 mt-2 mb-3"
-                       id="password" name="password" value="<?php echo $_POST['password']; ?>" required/>
+                       id="password" name="password" value="" required/>
             </div>
 
             <div class="bg-gray-200 px-4 py-3 text-right">
@@ -146,8 +129,7 @@ require_once "funcs/login.php";
 
 <!--form create-->
 <form class="z-10 overflow-y-auto top-0 w-full left-0 hidden" id="modal" action="" method="post">
-    <div
-        class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-900 opacity-75"/>
         </div>
@@ -163,25 +145,21 @@ require_once "funcs/login.php";
                 <label for="inputJudul">Judul</label>
                 <textarea rows="1"
                           class="w-full bg-gray-100 p-2 mt-2 mb-3 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          id="inputJudul" name="inputJudul"
-                          placeholder="Judul"/></textarea>
+                          id="inputJudul" name="inputJudul" placeholder="Judul"/></textarea>
 
                 <!--deskripsi-->
                 <label for="inputDeskripsi">Deskripsi</label>
                 <textarea type="textarea" rows="2"
                           class="block w-full bg-gray-100 p-2 mt-2 mb-3 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          id="inputDeskripsi"
-                          name="inputDeskripsi"
-                          placeholder="Deskripsi"></textarea>
+                          id="inputDeskripsi" name="inputDeskripsi" placeholder="Deskripsi"></textarea>
             </div>
             <div class="bg-gray-200 px-4 py-3 text-right">
-                <button type="button"
-                        class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
-                        onclick="toggleCreate()"><i class="fas fa-times"></i>
+                <button type="button" class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
+                        onclick="toggleCreate()">
+                    <i class="fas fa-times"></i>
                     Cancel
                 </button>
-                <button type="submit"
-                        class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2">
+                <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2">
                     <i class="fa-solid fa-plus"></i>
                     Create
                 </button>
