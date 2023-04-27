@@ -24,6 +24,6 @@
                    cursor-pointer transition-colors duration-300"
        onclick="toggleLogin()">
 
-        <i class="fa-solid fa-user-astronaut">Masuk</i>
+        <i class="fa-solid fa-user-astronaut"> Masuk</i>
     </a>
 </div>

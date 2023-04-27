@@ -7,12 +7,9 @@ require "funcs/session.php";
 <head>
     <?php include "templates/head.php"; ?>
 </head>
-<body>
-<?php echo "<h1>Selamat Datang, " . $_SESSION['username'] ."!". "</h1>"; ?>
-<button class="rounded-full bg-blue-500 px-5 py-3 mb-3
-font-semibold text-white transition duration-200 hover:bg-blue-600
-active:bg-blue-700">
-    <a href="funcs/logout.php">Logout</a>
-</button>
+<body class="antialiased bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 font-light text-gray-500">
+<nav class="flex justify-around py-4 bg-white/80 backdrop-blur-md shadow-md w-full fixed top-0 left-0 right-0 z-10">
+    <?php include "templates/navbarlogged.php"; ?>
+</nav>
 </body>
 </html>

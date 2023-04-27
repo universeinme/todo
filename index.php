@@ -116,7 +116,7 @@ require_once "funcs/login.php";
                 <!-- label id -->
                 <label for="email">Email</label>
                 <input type="email" class="w-full bg-gray-100 p-2 mt-2 mb-3"
-                       id="email" name="email" value="<?php echo $email; ?>" required/>
+                       id="email" name="email" value="" required/>
 
                 <!-- label pwd -->
                 <label for="password">Password</label>
