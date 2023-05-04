@@ -2,7 +2,7 @@
 
 $server = "localhost";
 $user = "root";
-$pass = "";
+$pass = "root";
 $database = "todo_app";
 
 $conn = mysqli_connect($server, $user, $pass, $database);

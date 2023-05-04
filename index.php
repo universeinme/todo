@@ -1,7 +1,8 @@
 <?php
-require_once "funcs/koneksi.php";
-require_once "funcs/registrasi.php";
-require_once "funcs/login.php";
+require "funcs/koneksi.php";
+require "funcs/registrasi.php";
+require "funcs/login.php";
+require "funcs/tambah.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +21,8 @@ require_once "funcs/login.php";
     <!--Todo-->
     <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
-    <?php include "templates/todo.php"; ?>
+        <?php include "templates/todo.php"; ?>
     </div>
-
-    <!-- grid container -->
 
     <div class="flex flex-col justify-end items-end fixed select-none sticky">
         <div class="absolute flex items-center justify-center align-middle top-8">
@@ -145,13 +144,17 @@ require_once "funcs/login.php";
                 <label for="inputJudul">Judul</label>
                 <textarea rows="1"
                           class="w-full bg-gray-100 p-2 mt-2 mb-3 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          id="inputJudul" name="inputJudul" placeholder="Judul"/></textarea>
+                          id="inputJudul" name="inputJudul" placeholder="Judul"></textarea>
 
                 <!--deskripsi-->
                 <label for="inputDeskripsi">Deskripsi</label>
-                <textarea type="textarea" rows="2"
+                <textarea rows="2"
                           class="block w-full bg-gray-100 p-2 mt-2 mb-3 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           id="inputDeskripsi" name="inputDeskripsi" placeholder="Deskripsi"></textarea>
+
+                <!--Tanggal Tempo-->
+                <label for="inputTanggal">Tempo: </label>
+                <input type="date" id="inputTanggal" name="inputTempo" placeholder="Tanggal Tempo">
             </div>
             <div class="bg-gray-200 px-4 py-3 text-right">
                 <button type="button" class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
@@ -159,7 +162,7 @@ require_once "funcs/login.php";
                     <i class="fas fa-times"></i>
                     Cancel
                 </button>
-                <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2">
+                <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" name="tambah" value="tambah">
                     <i class="fa-solid fa-plus"></i>
                     Create
                 </button>
