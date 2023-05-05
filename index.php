@@ -2,7 +2,6 @@
 require "funcs/koneksi.php";
 require "funcs/registrasi.php";
 require "funcs/login.php";
-require "funcs/tambah.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,15 +21,6 @@ require "funcs/tambah.php";
     <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
         <?php include "templates/todo.php"; ?>
-    </div>
-
-    <div class="flex flex-col justify-end items-end fixed select-none sticky">
-        <div class="absolute flex items-center justify-center align-middle top-8">
-            <button onclick="toggleCreate()"
-                    class="drop-shadow-md bg-white h-10 w-20 rounded-full align-middle font-semibold">
-                Create
-            </button>
-        </div>
     </div>
 </main>
 
