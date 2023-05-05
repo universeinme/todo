@@ -1,6 +1,15 @@
 <?php
 require "funcs/koneksi.php";
 require "funcs/session.php";
+require "funcs/tambah.php";
+
+if (isset($_POST["tambah"])) {
+    if(tambah($_POST) > 0) {
+        echo "<script>alert('Berhasil ditambahkan!')</script>";
+    } else {
+        echo mysqli_error($conn);
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,7 +26,14 @@ require "funcs/session.php";
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
         <?php include "templates/todo.php"; ?>
     </div>
-    <?php include "./funcs/tambah.php"; ?>
+    <div class="flex flex-col justify-end items-end fixed select-none sticky">
+        <div class="absolute flex items-center justify-center align-middle top-8">
+            <button onclick="toggleCreate()"
+                    class="drop-shadow-md bg-white h-10 w-20 rounded-full align-middle font-semibold">
+                Create
+            </button>
+        </div>
+    </div>
 </main>
 <!--form create-->
 <form class="z-10 overflow-y-auto top-0 w-full left-0 hidden" id="modal" action="" method="post">
@@ -29,8 +45,8 @@ require "funcs/session.php";
             &#8203;
         </span>
         <div
-            class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-            role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+          class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+          role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
                 <!--judul-->

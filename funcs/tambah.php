@@ -1,40 +1,20 @@
 <?php
-require "koneksi.php";
-error_reporting(0);
-session_start();
 
-global $conn;
-$id = $_GET['id'];
-$pilihKolom = "SELECT * from todo_app.users where  id = '$id'";
-$hasilKolom = mysqli_query($conn, $pilihKolom);
+function tambah($data) {
+    global $conn;
 
-if (mysqli_num_rows($hasilKolom)) {
-  $dataUser = mysqli_fetch_array($hasilKolom);
-  $id_user = $dataUser['id'];
+    $username = $_SESSION['username'];
+    $query = "SELECT tasks.id, users.username, tasks.judul, tasks.deskripsi, tasks.tgl_tempo, tasks.status FROM users INNER JOIN tasks ON users.id=tasks.id WHERE users.username='$username'";
 
-  if (isset($_POST['tambah']) && $_POST['tambah']) {
+    $rowId = mysqli_query($conn, $query)->fetch_assoc();
+    $id = $rowId["id"];
 
-    $judul = $_POST['inputJudul'];
-    $deskripsi = $_POST['inputDeskripsi'];
-    $tempo = $_POST['inputTempo'];
+    $pilihUser =mysqli_real_escape_string($conn, $id);
+    $judul = mysqli_real_escape_string($conn, $data["inputJudul"]);
+    $deskripsi = mysqli_real_escape_string($conn, $data["inputDeskripsi"]);
+    $tempo = mysqli_real_escape_string($conn, $data["inputTempo"]);
 
-    $tambahTodo = "insert into tasks (id, judul, deskripsi, tgl_tempo, status) values ($id_user, '$judul', '$deskripsi', '$tempo', 0)";
+    mysqli_query($conn, "INSERT INTO tasks (id, judul, deskripsi, tgl_tempo, status) VALUES ('$pilihUser', '$judul', '$deskripsi', '$tempo', 0)");
 
-    $berhasilTambah = mysqli_query($conn, $tambahTodo);
-    if ($berhasilTambah) {
-      echo "<script>alert('Todo telah ditambahkan')</script>";
-    } else {
-      echo "error" . mysqli_error($conn);
-      die;
-    }
-  }
+    return mysqli_affected_rows($conn);
 }
-?>
-<div class="flex flex-col justify-end items-end fixed select-none sticky">
-  <div class="absolute flex items-center justify-center align-middle top-8">
-    <button onclick="toggleCreate()"
-            class="drop-shadow-md bg-white h-10 w-20 rounded-full align-middle font-semibold">
-      Create
-    </button>
-  </div>
-</div>

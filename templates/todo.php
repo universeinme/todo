@@ -7,6 +7,7 @@ $id = $_SESSION['username'];
 
 // narik data
 $query = "SELECT tasks.id, users.username, tasks.judul, tasks.deskripsi, tasks.tgl_tempo, tasks.status FROM users INNER JOIN tasks ON users.id=tasks.id WHERE users.username='$id'";
+
 $tampilNarik = mysqli_query($conn, $query);
 ?>
 
