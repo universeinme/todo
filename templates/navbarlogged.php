@@ -20,7 +20,7 @@
     </a>
 
     <!-- Login -->
-    <a class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" href="funcs/logout.php">
+    <a class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" href="./funcs/logout.php">
         <i class="fa-solid fa-arrow-right-from-bracket"> Logout</i>
     </a>
 </div>

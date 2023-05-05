@@ -1,12 +1,20 @@
 <!-- product card -->
 <?php
 
-// narik data
-$limitData = "SELECT * FROM tasks ORDER BY tgl_tempo DESC limit 10";
-$query = mysqli_query($conn, $limitData);
+/*session_start();*/
+// set variabel id
+$id = $_SESSION['username'];
 
-// narik baris berikutnya ditampilin as array yg seasosiasi
-while ($data = mysqli_fetch_assoc($query)) {
+// narik data
+$query = "SELECT tasks.id, users.username, tasks.judul, tasks.deskripsi, tasks.tgl_tempo, tasks.status FROM users INNER JOIN tasks ON users.id=tasks.id WHERE users.username='$id'";
+$tampilNarik = mysqli_query($conn, $query);
+?>
+
+<!--// narik baris berikutnya ditampilin as array yg seasosiasi-->
+<?php
+if (mysqli_num_rows($tampilNarik) > 0) {
+
+while ($data = mysqli_fetch_assoc($tampilNarik)) {
     $judul = $data['judul'];
     $deskripsi = $data['deskripsi'];
     $tempo = $data['tgl_tempo'];
@@ -30,4 +38,7 @@ while ($data = mysqli_fetch_assoc($query)) {
             </span>
         </div>
     </a>
-<?php } ?>
+<?php }
+} else {
+    echo "<span>Daftar dulu</span>";
+} ?>
