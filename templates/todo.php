@@ -19,15 +19,13 @@ if (mysqli_num_rows($tampilNarik) > 0) {
     $deskripsi = $data['deskripsi'];
     $tempo = $data['tgl_tempo'];
     ?>
-    <div
-      class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg  rounded-md break-words">
+    <div class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg  rounded-md break-words">
       <div class="border-gray-300 border-b-2 border-solid flex flex-col relative m-1 px-2">
         <h2 class="font-semibold">
           <?php echo "$judul"; ?>
         </h2>
       </div>
-      <div
-        class="border-gray-100 border-b-2 border-solid flex flex-col relative px-2 m-1 inline-block align-middle">
+      <div class="border-gray-100 border-b-2 border-solid flex flex-col relative px-2 m-1 inline-block align-middle">
                 <span class="relative">
                     <?php echo "$deskripsi"; ?>
                 </span>
@@ -38,15 +36,13 @@ if (mysqli_num_rows($tampilNarik) > 0) {
             </span>
       </div>
       <div class="px-2 m-1 mb-2">
-        <button class="group relative w-16 overflow-hidden rounded-lg bg-white shadow" @click="showModal = true">
-          <div
-              class="absolute inset-0 w-3 bg-sky-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-          <span class="relative text-black group-hover:text-white" @click="showModal = true">Edit</span>
+        <button class="group relative w-16 overflow-hidden rounded-lg bg-white shadow" x-data @click="$dispatch('toggle-edit-modal')">
+          <div class="absolute inset-0 w-3 bg-sky-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+          <span class="relative text-black group-hover:text-white">Edit</span>
         </button>
-        <button class="group relative w-16 overflow-hidden rounded-lg bg-white shadow float-right" @click="showModal = true">
-          <div
-            class="absolute inset-0 w-3 bg-red-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-          <span class="relative text-black group-hover:text-white" @click="showModal = true">Delete</span>
+        <button class="group relative w-16 overflow-hidden rounded-lg bg-white shadow float-right" x-data @click="$dispatch('toggle-hapus-modal')">
+          <div class="absolute inset-0 w-3 bg-red-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+          <span class="relative text-black group-hover:text-white" >Delete</span>
         </button>
       </div>
     </div>
