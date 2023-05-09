@@ -1,7 +1,6 @@
 <!-- product card -->
 <?php
 
-/*session_start();*/
 // set variabel id
 $id = $_SESSION['username'];
 
@@ -38,18 +37,16 @@ if (mysqli_num_rows($tampilNarik) > 0) {
                 Tempo: <?php echo "$tempo"; ?>
             </span>
       </div>
-      <div class="px-2 m-1">
-        <button class="group relative w-16 overflow-hidden rounded-lg bg-white shadow">
+      <div class="px-2 m-1 mb-2">
+        <button class="group relative w-16 overflow-hidden rounded-lg bg-white shadow" @click="showModal = true">
           <div
-            class="absolute inset-0 w-3 bg-sky-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-          <span class="relative text-black group-hover:text-white">
-                Edit
-            </span>
+              class="absolute inset-0 w-3 bg-sky-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+          <span class="relative text-black group-hover:text-white" @click="showModal = true">Edit</span>
         </button>
-        <button class="group relative w-16 overflow-hidden rounded-lg bg-white shadow float-right">
+        <button class="group relative w-16 overflow-hidden rounded-lg bg-white shadow float-right" @click="showModal = true">
           <div
             class="absolute inset-0 w-3 bg-red-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-          <span class="relative text-black group-hover:text-white">Delete</span>
+          <span class="relative text-black group-hover:text-white" @click="showModal = true">Delete</span>
         </button>
       </div>
     </div>

@@ -17,12 +17,17 @@
         <!-- Register -->
         <a class="flex text-gray-600 hover:text-blue-500
                    cursor-pointer transition-colors duration-300"
-           onclick="toggleDaftar()">
+           x-data @click="$dispatch('toggle-modal')"
+        >
             <i class="fa-solid fa-user-plus"> Daftar</i>
         </a>
+        <!--<a class="flex text-gray-600 hover:text-blue-500
+                   cursor-pointer transition-colors duration-300"
+           onclick="toggleLogin()">-->
         <a class="flex text-gray-600 hover:text-blue-500
                    cursor-pointer transition-colors duration-300"
-           onclick="toggleLogin()">
+           x-data @click="$dispatch('toggle-reassign-modal')"
+        >
             <i class="fa-solid fa-user-astronaut"> Masuk</i>
         </a>
     </div>
