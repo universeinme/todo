@@ -1,4 +1,19 @@
-<?php ?>
+<?php
+
+
+// narik data
+$username = $_SESSION['username'];
+$query = "SELECT tasks.id, users.username, tasks.judul, tasks.deskripsi, tasks.tgl_tempo, tasks.status FROM users INNER JOIN tasks ON users.id=tasks.user_id WHERE users.username='$username'";
+
+$tampilNarik = mysqli_query($conn, $query);
+if (mysqli_num_rows($tampilNarik) > 0) {
+  while ($data = mysqli_fetch_assoc($tampilNarik)) {
+    $judul = $data['judul'];
+    $deskripsi = $data['deskripsi'];
+    $tempo = $data['tgl_tempo'];
+  }
+}
+?>
 <div
   x-data="editDialog()"
   @toggle-edit-modal.window="editModal = !editModal"
@@ -48,17 +63,19 @@
           <label for="inputJudul">Judul</label>
           <textarea rows="1"
                     class="w-full bg-gray-100 p-2 mt-2 mb-3 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    id="inputJudul" name="inputJudul" placeholder="Judul"></textarea>
-
+                    id="inputJudul" name="inputJudul">
+            <?php echo "$judul"; ?>
+          </textarea>
           <!--deskripsi-->
           <label for="inputDeskripsi">Deskripsi</label>
           <textarea rows="2"
                     class="block w-full bg-gray-100 p-2 mt-2 mb-3 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    id="inputDeskripsi" name="inputDeskripsi" placeholder="Deskripsi"></textarea>
-
+                    id="inputDeskripsi" name="inputDeskripsi">
+            <?php echo "$deskripsi"; ?>
+          </textarea>
           <!--Tanggal Tempo-->
           <label for="inputTanggal">Tempo: </label>
-          <input type="date" id="inputTanggal" name="inputTempo" placeholder="Tanggal Tempo">
+          <input type="date" id="inputTanggal" name="inputTempo" value="<?php echo "$tempo"; ?>">
         </div>
         <div class="bg-gray-200 px-4 py-3 text-right">
           <button type="button" class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
@@ -66,8 +83,8 @@
           ><i class="fas fa-times"></i>
             Cancel
           </button>
-          <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" name="update"
-                  value="update">
+          <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" name="edit"
+                  value="edit">
             <i class="fa-solid fa-pen-to-square"></i>
             Update
           </button>

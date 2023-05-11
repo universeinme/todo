@@ -1,4 +1,12 @@
 <?php
+require $_SERVER['DOCUMENT_ROOT']."todo/funcs/delete.php";
+if(isset($_POST['hapus'])) {
+  if(hapus($_POST) > 0) {
+    echo "<script>alert('Berhasil dihapus!')</script>";
+  } else {
+    echo mysqli_error($conn);
+  }
+}
 ?>
 <div
   x-data="hapusDialog()"

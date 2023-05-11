@@ -6,10 +6,6 @@ error_reporting(0);
 
 session_start();
 
-if (isset($_SESSION['username'])) {
-    header("Location: ./index.php");
-}
-
 if (isset($_POST['daftar'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];

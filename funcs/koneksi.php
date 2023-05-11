@@ -4,7 +4,7 @@ $server = "localhost";
 $user = "root";
 $pass = "root";
 $database = "todo_app";
-
+global $conn;
 $conn = mysqli_connect($server, $user, $pass, $database);
 
 // checking

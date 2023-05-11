@@ -36,7 +36,7 @@
                                         Masuk
                                     </span>
             <button type="button" class="z-50 cursor-pointer float-right"
-                    @click="close"
+                    @click="closeReassign()"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                    fill="none"
@@ -54,7 +54,7 @@
         </div>
         <div class="bg-gray-200 px-4 py-3 text-right">
           <button type="button" class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
-                  @click="close"
+                  @click="closeReassign()"
           ><i class="fas fa-times"></i>
             Cancel
           </button>

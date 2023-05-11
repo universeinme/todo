@@ -1,21 +1,16 @@
 <?php
-function edit($data) {
-    global $conn;
 
-    $username = $_SESSION['username'];
+function edit($data)
+{
+  global $conn;
 
-    // ambil semua data
-    $id = $data["id"];
-    $user_id = htmlspecialchars($data["user_id"]);
-    $judul = htmlspecialchars($data["judul"]);
-    $deskripsi = htmlspecialchars($data["deskripsi"]);
-    $tgl_tempo = htmlspecialchars($data["tgl_tempo"]);
-    $status = $data["status"];
+  // narik data
+  $queryNarik = "SELECT * from tasks WHERE id='".$_GET['id']."'";
 
-    $query = "UPDATE tasks SET judul = '$judul', deskripsi = '$deskripsi', tgl_tempo = '$tgl_tempo', status = $status WHERE id = $id and user_id = $user_id ";
+  $update = "UPDATE INTO tasks SET user_id = '$pilihUser', judul = '$judul', deskripsi = '$deskripsi', tgl_tempo = '$tempo' WHERE id= '$id'";
 
-    mysqli_query($conn, $query);
+  mysqli_query($conn, $update);
 
-    return mysqli_affected_rows($conn);
+  return mysqli_affected_rows($conn);
 
 }

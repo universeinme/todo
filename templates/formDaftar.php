@@ -1,4 +1,5 @@
 <?php
+
 ?>
 <div
   x-data="isDialogOpen()"
@@ -61,6 +62,7 @@
         <div class="bg-gray-200 px-4 py-3 text-right">
           <button type="button"
                   class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
+                  @click="close"
           ><i class="fas fa-times"></i>
             Cancel
           </button>

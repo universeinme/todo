@@ -1,5 +1,5 @@
 <?php
-
+require "funcs/session.php";
 ?>
 <!-- Logo Container -->
 <div class="flex items-center">

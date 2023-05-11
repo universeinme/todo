@@ -1,23 +1,5 @@
 <?php
-require "funcs/koneksi.php";
-require "funcs/session.php";
-require "funcs/tambah.php";
 
-if (isset($_POST["tambah"])) {
-    if(tambah($_POST) > 0) {
-        echo "<script>alert('Berhasil ditambahkan!')</script>";
-    } else {
-        echo mysqli_error($conn);
-    }
-}
-
-if (isset($_POST["edit"])) {
-    if(edit($_POST) > 0) {
-        echo "<script>alert('Berhasil diupdate!')</script>";
-    } else {
-        echo mysqli_error($conn);
-    }
-}
 ?>
 <!doctype html>
 <html lang="en">

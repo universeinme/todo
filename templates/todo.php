@@ -1,6 +1,6 @@
 <!-- product card -->
 <?php
-
+require "funcs/koneksi.php";
 // set variabel id
 $id = $_SESSION['username'];
 
