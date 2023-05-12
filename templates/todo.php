@@ -12,8 +12,10 @@ $tampilNarik = mysqli_query($conn, $query);
 
 <!--// narik baris berikutnya ditampilin as array yg seasosiasi-->
 <?php
-foreach($tampilNarik as $task) { ?>
-  <div id="task-<?php echo $task['id']; ?>" class="task-card flex flex-col bg-white drop-shadow hover:drop-shadow-lg  rounded-md break-words">
+if (mysqli_num_rows($tampilNarik) >0 ) {
+foreach ($tampilNarik as $task) { ?>
+  <div id="task-<?php echo $task['id']; ?>"
+       class="task-card flex flex-col bg-white drop-shadow hover:drop-shadow-lg  rounded-md break-words">
     <div class="border-gray-300 border-b-2 border-solid flex flex-col relative m-1 px-2">
       <h2 class="font-semibold">
         <?php echo $task['judul']; ?>
@@ -30,14 +32,19 @@ foreach($tampilNarik as $task) { ?>
       </span>
     </div>
     <div class="px-2 m-1 mb-2">
-      <button class="edit-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow" x-data @click="$dispatch('toggle-edit-modal')">
+      <button class="edit-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow" x-data
+              @click="$dispatch('toggle-edit-modal')">
         <div class="absolute inset-0 w-3 bg-sky-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
         <span class="relative text-black group-hover:text-white">Edit</span>
       </button>
-      <button class="delete-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow float-right" onclick="hapusTask(<?php echo $task['id']; ?>)">
+      <button class="delete-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow float-right"
+              onclick="hapusTask(<?php echo $task['id']; ?>)">
         <div class="absolute inset-0 w-3 bg-red-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-        <span class="relative text-black group-hover:text-white" >Delete</span>
+        <span class="relative text-black group-hover:text-white">Delete</span>
       </button>
     </div>
   </div>
-<?php } ?>
+<?php }
+} else {
+  echo "<span>Daftar Dulu</span>";
+} ?>
