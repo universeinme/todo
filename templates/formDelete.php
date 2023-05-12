@@ -56,7 +56,7 @@
             </button>
             <button type="submit"
                     class="py-2 px-4 bg-red-300 text-white rounded hover:bg-red-500 mr-2 delete-confirmed-btn"
-                    @click="hapusTask(<?php echo $tampilNarik['id']; ?>)">
+                    @click="hapusTask(<?php ?>)">
               <i class="fa-solid fa-trash-can"></i>
               Hapus
             </button>
