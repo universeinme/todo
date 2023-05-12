@@ -1,8 +1,12 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT']."todo/funcs/koneksi.php";
-function hapus($id_todo) {
-  global $conn;
+require "koneksi.php";
+$id = $_POST['id'];
 
-  mysqli_query($conn, "DELETE FROM tasks WHERE id = $id_todo");
-  return mysqli_affected_rows($conn);
+$q = "DELETE FROM tasks WHERE id = '$id'";
+$res = mysqli_query($conn, $q);
+if ($res) {
+    echo "<script>alert('Berhasil dihapus!')</script>";
+    header("location:../welcome.php");
+} else {
+  echo "<script>alert('Gagal Menghapus')</script>";
 }

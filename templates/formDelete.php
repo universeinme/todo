@@ -1,13 +1,5 @@
-<?php
-require $_SERVER['DOCUMENT_ROOT']."todo/funcs/delete.php";
-if(isset($_POST['hapus'])) {
-  if(hapus($_POST) > 0) {
-    echo "<script>alert('Berhasil dihapus!')</script>";
-  } else {
-    echo mysqli_error($conn);
-  }
-}
-?>
+<?php ?>
+
 <div
   x-data="hapusDialog()"
   @toggle-hapus-modal.window="hapusModal = !hapusModal"
@@ -15,7 +7,7 @@ if(isset($_POST['hapus'])) {
   <!-- overlay -->
   <form
     class="z-10 overflow-y-auto top-0 w-full left-0"
-    id="create" action="" method="post"
+    id="delete-confirmation-modal"
     x-show="isOpenHapusModal()"
     :class="{ 'hapus-history-modal': isOpenHapusModal() }"
   >
@@ -40,9 +32,9 @@ if(isset($_POST['hapus'])) {
 
           <!--Title / Close-->
           <h4 class="mr-3 text-black max-w-none text-semibold mb-2 pb-2 border-b-2">
-                                    <span class="font-semibold">
-                                        Hapus
-                                    </span>
+            <span class="font-semibold">
+              Hapus
+            </span>
             <button type="button" class="z-50 cursor-pointer float-right" @click="closeHapusModal"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -62,8 +54,9 @@ if(isset($_POST['hapus'])) {
             ><i class="fas fa-times"></i>
               Cancel
             </button>
-            <button type="submit" class="py-2 px-4 bg-red-300 text-white rounded hover:bg-red-500 mr-2" name="hapus"
-                    value="hapus">
+            <button type="submit"
+                    class="py-2 px-4 bg-red-300 text-white rounded hover:bg-red-500 mr-2 delete-confirmed-btn"
+                    @click="hapusTask(<?php echo $tampilNarik['id']; ?>)">
               <i class="fa-solid fa-trash-can"></i>
               Hapus
             </button>

@@ -24,12 +24,3 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-
-/*$pilihUser =mysqli_real_escape_string($conn, $id);
-$judul = mysqli_real_escape_string($conn, $data["inputJudul"]);
-$deskripsi = mysqli_real_escape_string($conn, $data["inputDeskripsi"]);
-$tempo = mysqli_real_escape_string($conn, $data["inputTempo"]);
-
-mysqli_query($conn, "INSERT INTO tasks (user_id, judul, deskripsi, tgl_tempo, status) VALUES ('$pilihUser', '$judul', '$deskripsi', '$tempo', 0)");
-
-return mysqli_affected_rows($conn);*/

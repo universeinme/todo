@@ -1,6 +1,5 @@
 <?php
 
-
 // narik data
 $username = $_SESSION['username'];
 $query = "SELECT tasks.id, users.username, tasks.judul, tasks.deskripsi, tasks.tgl_tempo, tasks.status FROM users INNER JOIN tasks ON users.id=tasks.user_id WHERE users.username='$username'";

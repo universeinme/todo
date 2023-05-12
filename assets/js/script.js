@@ -82,3 +82,20 @@ function hapusDialog() {
         },
     }
 }
+
+function hapusTask(id) {
+    if (confirm("Are you sure you want to delete this task?")) {
+        // send AJAX request to delete task from database
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './funcs/delete.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                // remove task from view if server confirms deletion
+                var taskCard = document.getElementById('task-' + id);
+                taskCard.parentNode.removeChild(taskCard);
+            }
+        };
+        xhr.send('id=' + id);
+    }
+}
