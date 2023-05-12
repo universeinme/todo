@@ -26,10 +26,7 @@
         </div>
         <?php include "templates/formBuat.php"; ?>
     </div>
-    <?php include "templates/formDelete.php"; ?>
 </main>
-<?php include "templates/formEdit.php"; ?>
 <?php include "templates/js.php"; ?>
-
 </body>
 </html>
