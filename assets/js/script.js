@@ -63,6 +63,9 @@ function editDialog() {
         isOpenEditModal() {
             return this.editModal === true
         },
+        toggleEditModal() {
+            this.editModal = !this.editModal;
+        },
     }
 }
 
