@@ -51,8 +51,19 @@ function createDialog() {
 
 function editDialog() {
     return {
+        task: {},
         editModal: false,
+        setData(task) {
+            this.task = task;
+            this.openEdit();
+            this.$nextTick(() => {
+                this.$refs.judul.value = task.judul;
+                this.$refs.deskripsi.value = task.deskripsi;
+                this.$refs.tanggal.value = task.tanggal;
+            });
+        },
         openEdit() {
+            dispatchEvent(new CustomEvent('edit-task', { detail: task }));
             this.editModal = true;
             document.body.classList.add("modal-open");
         },
@@ -66,10 +77,43 @@ function editDialog() {
         toggleEditModal() {
             this.editModal = !this.editModal;
         },
+        editTask(taskId) {
+            const judul = this.$refs.judul.value;
+            const deskripsi = this.$refs.deskripsi.value;
+            const tanggal = this.$refs.tanggal.value;
+
+            fetch(`./templates/todo.php=${taskId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    judul,
+                    deskripsi,
+                    tanggal,
+                }),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Do something on success
+                        console.log('Task updated successfully');
+                        this.closeEditModal();
+                    } else {
+                        // Do something on error
+                        console.error('Error updating task');
+                        this.closeEditModal();
+                    }
+                })
+                .catch(error => {
+                    // Handle network errors
+                    console.error('Network error', error);
+                });
+        },
     }
 }
 
-function hapusDialog() {
+
+/*function hapusDialog() {
     return {
         hapusModal: false,
         openHapus() {
@@ -83,22 +127,48 @@ function hapusDialog() {
         isOpenHapusModal() {
             return this.hapusModal === true
         },
+        confirmedHapus(id) {
+            fetch('./funcs/delete.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'id=' + id
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // remove task from view if server confirms deleteion
+                        var taskCard = document.getElementById('task-' + id);
+                        taskCard.parentNode.removeChild(taskCard);
+                        this.closeHapusModal();
+                    }
+                })
+                .catch(error => console.error(error));
+        }
     }
-}
+}*/
 
 function hapusTask(id) {
     if (confirm("Are you sure you want to delete this task?")) {
         // send AJAX request to delete task from database
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', './funcs/delete.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                // remove task from view if server confirms deletion
-                var taskCard = document.getElementById('task-' + id);
-                taskCard.parentNode.removeChild(taskCard);
-            }
-        };
-        xhr.send('id=' + id);
+        fetch('./funcs/delete.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'id=' + id
+        })
+            .then(response => {
+                if (response.ok) {
+
+                    // remove task from view if server confirms deleteion
+                    var taskCard = document.getElementById('task-' + id);
+                    taskCard.parentNode.removeChild(taskCard);
+
+                    // display success message
+                    alert("Task successfully deleted!");
+                }
+            })
+            .catch(error => console.error(error));
     }
 }
