@@ -7,9 +7,10 @@
   <!-- overlay -->
   <form
       class="z-10 overflow-y-auto top-0 w-full left-0"
-      id="create" action="" method="post"
+      id="delete"
       x-show="isOpenHapusModal()"
       :class="{ 'hapus-history-modal': isOpenHapusModal() }"
+      @submit.prevent="confirmedHapus(<?php echo $task['id']; ?>)"
   >
     <!-- dialog -->
     <div
@@ -54,8 +55,7 @@
             ><i class="fas fa-times"></i>
               Cancel
             </button>
-            <button type="submit" class="py-2 px-4 bg-red-300 text-white rounded hover:bg-red-500 mr-2" name="hapus"
-                    value="hapus" @click="">
+            <button type="submit" class="py-2 px-4 bg-red-300 text-white rounded hover:bg-red-500 mr-2" @click="confirmedHapus(<?php echo $task['id']; ?>)">
               <i class="fa-solid fa-trash-can"></i>
               Hapus
             </button>
