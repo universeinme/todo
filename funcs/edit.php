@@ -1,6 +1,6 @@
 <?php
 require "koneksi.php";
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+/*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //get the task id and other form data
     $id = $_POST['id'];
     $judul = $_POST['judul'];
@@ -22,4 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Return a JSON response indicating a success
     header('Content-Type: application/json');
     echo json_encode(['success' => true]);
-}
+}*/
+$id = $_POST['id'];
+$title = $_POST['title'];
+$description = $_POST['description'];
+$date = $_POST['date'];
+
+// Update the task in the database
+mysqli_query($conn, "UPDATE tasks SET judul = '$title', deskripsi = '$description', tgl_tempo = '$date' WHERE id = $id");
+
+header("location: ../welcome.php");
