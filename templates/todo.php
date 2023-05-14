@@ -13,25 +13,25 @@ $tampilNarik = mysqli_query($conn, $query);
 <?php
 if (mysqli_num_rows($tampilNarik) >0 ) {
   foreach ($tampilNarik as $task) { ?>
-    <div id="task-<?php echo $task['id']; ?>"
+    <div
          class="task-card flex flex-col bg-white drop-shadow hover:drop-shadow-lg  rounded-md break-words">
       <div class="border-gray-300 border-b-2 border-solid flex flex-col relative m-1 px-2">
-        <h2 class="font-semibold" x-data="{ judul: '<?php echo $task['judul']; ?>' }">
-          <span x-text="judul"></span>
+        <h2 class="task-title font-semibold">
+          <?php echo $task['judul']; ?>
         </h2>
       </div>
       <div class="border-gray-100 border-b-2 border-solid flex flex-col relative px-2 m-1 inline-block align-middle">
-      <span class="relative">
-        <?php echo $task['deskripsi']; ?>
-      </span>
+        <p class="task-description relative">
+          <?php echo $task['deskripsi']; ?>
+        </p>
       </div>
       <div class="px-2 m-1">
-        <span class="relative" x-ref="tanggal">
+        <p class="task-date relative">
           Tempo: <?php echo $task['tgl_tempo']; ?>
-        </span>
+        </p>
       </div>
       <div class="px-2 m-1 mb-2">
-        <button class="edit-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow" x-data @click="$dispatch('toggle-edit-modal')">
+        <button class="edit-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow" onclick="editTask(<?php echo $task['id']; ?>)">
           <div class="absolute inset-0 w-3 bg-sky-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
           <span class="relative text-black group-hover:text-white">Edit</span>
         </button>
