@@ -49,21 +49,12 @@ function createDialog() {
     }
 }
 
-function editDialog() {
+/*function editDialog() {
     return {
         task: {},
         editModal: false,
-        setData(task) {
-            this.task = task;
-            this.openEdit();
-            this.$nextTick(() => {
-                this.$refs.judul.value = task.judul;
-                this.$refs.deskripsi.value = task.deskripsi;
-                this.$refs.tanggal.value = task.tanggal;
-            });
-        },
         openEdit() {
-            dispatchEvent(new CustomEvent('edit-task', { detail: task }));
+
             this.editModal = true;
             document.body.classList.add("modal-open");
         },
@@ -77,41 +68,28 @@ function editDialog() {
         toggleEditModal() {
             this.editModal = !this.editModal;
         },
-        editTask(taskId) {
-            const judul = this.$refs.judul.value;
-            const deskripsi = this.$refs.deskripsi.value;
-            const tanggal = this.$refs.tanggal.value;
+        editTask(id) {
+            // Get the task data from the server using AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    // Parse the JSON response
+                    var task = JSON.parse(this.responseText);
 
-            fetch(`./templates/todo.php=${taskId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    judul,
-                    deskripsi,
-                    tanggal,
-                }),
-            })
-                .then(response => {
-                    if (response.ok) {
-                        // Do something on success
-                        console.log('Task updated successfully');
-                        this.closeEditModal();
-                    } else {
-                        // Do something on error
-                        console.error('Error updating task');
-                        this.closeEditModal();
-                    }
-                })
-                .catch(error => {
-                    // Handle network errors
-                    console.error('Network error', error);
-                });
-        },
+                    // Populate the modal form with the task data
+                    document.getElementById('task-id').value = task.id;
+                    document.getElementById('task-title').value = task.judul;
+                    document.getElementById('task-description').value = task.deskripsi;
+                    document.getElementById('task-date').value = task.tgl_tempo;
+
+                    this.openEdit();
+                }
+            };
+            xhr.open('GET', 'pilih_task.php?id=' + id, true);
+            xhr.send();
+        }
     }
-}
-
+}*/
 
 /*function hapusDialog() {
     return {
@@ -171,4 +149,27 @@ function hapusTask(id) {
             })
             .catch(error => console.error(error));
     }
+}
+
+function editTask(id) {
+    // Get the task data from the server using AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Parse the JSON response
+            var task = JSON.parse(this.responseText);
+
+            // Populate the modal form with the task data
+            document.getElementById('task-id').value = task.id;
+            document.getElementById('task-title').value = task.judul;
+            document.getElementById('task-description').value = task.deskripsi;
+            document.getElementById('task-date').value = task.tgl_tempo;
+
+            // Show the modal dialog
+            var modal = document.getElementById('edit-modal');
+            modal.style.display = 'block';
+        }
+    };
+    xhr.open('GET', './funcs/pilih_task.php?id=' + id, true);
+    xhr.send();
 }
