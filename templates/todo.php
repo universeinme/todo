@@ -31,7 +31,7 @@ if (mysqli_num_rows($tampilNarik) >0 ) {
         </p>
       </div>
       <div class="px-2 m-1 mb-2">
-        <button class="edit-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow" onclick="editTask(<?php echo $task['id']; ?>)">
+        <button id="open-modal" type="button" class="group relative w-16 overflow-hidden rounded-lg bg-white shadow" onclick="editTask(<?php echo $task['id']; ?>)">
           <div class="absolute inset-0 w-3 bg-sky-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
           <span class="relative text-black group-hover:text-white">Edit</span>
         </button>
@@ -39,10 +39,6 @@ if (mysqli_num_rows($tampilNarik) >0 ) {
           <div class="absolute inset-0 w-3 bg-red-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
           <span class="relative text-black group-hover:text-white">Delete</span>
         </button>
-        <!--<button class="delete-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow float-right" x-data @click="$dispatch('toggle-hapus-modal')">
-          <div class="absolute inset-0 w-3 bg-red-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-          <span class="relative text-black group-hover:text-white">Delete</span>
-        </button>-->
       </div>
     </div>
   <?php }
