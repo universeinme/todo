@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"type":"text","text":"Delete Button","id":"3e9a76a95c3fd170","x":-775,"y":-640,"width":160,"height":60,"color":"5"},
+		{"type":"text","text":"row task-id hilang dari tabel\n","id":"ac541ffb5a8f158a","x":-615,"y":-56,"width":250,"height":71,"color":"5"},
+		{"type":"text","text":"```html\n<button class=\"delete-btn group relative w-16 overflow-hidden rounded-lg bg-white shadow float-right\" x-data @click=\"hapusTask(<?php echo $task['id']; ?>)\">  \n<div class=\"absolute inset-0 w-3 bg-red-300 transition-all duration-[250ms] ease-out group-hover:w-full\"></div>  \n<span class=\"relative text-black group-hover:text-white\">Delete</span>  \n</button>\n```","id":"a932b77515bb05d2","x":-935,"y":-1020,"width":480,"height":280,"color":"3"},
+		{"type":"text","text":"Biar card gampang dihapus, card dikasi unique identifier kaya id.\ncard \n```php\nid=\"task-<?php echo $task['id']; ?>\"\n```\n\n","id":"7a06c9058f0aa8c1","x":-1560,"y":-960,"width":480,"height":160,"color":"6"},
+		{"type":"text","text":"PopUp Konfirmasi Hapus Keluar","id":"a15f7e5cfaea9790","x":-935,"y":-388,"width":250,"height":60,"color":"5"},
+		{"type":"text","text":"Tidak","id":"68d7046f41c243f0","x":-580,"y":-396,"width":250,"height":60,"color":"5"},
+		{"type":"text","text":"SecNote :\n\nkolom id, baiknya disliwerin biar nggak gampang diidentifikasi kalo itu tabel nomor urut. Its ok kalo ini your first project","id":"5ed889c16a11b6ab","x":-365,"y":-1020,"width":410,"height":153,"color":"6"},
+		{"type":"text","text":"```js\nfunction hapusTask(id) {  \nif (confirm(\"Are you sure you want to delete this task?\")) {  \n\n// send AJAX request to delete task from database  \nvar xhr = new XMLHttpRequest();  \nxhr.open('POST', './funcs/delete.php', true);  \nxhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  \nxhr.onreadystatechange = function() {  \nif (this.readyState === XMLHttpRequest.DONE && this.status === 200) {  \n\n// remove task from view if server confirms deletion  \nvar taskCard = document.getElementById('task-' + id);  \ntaskCard.parentNode.removeChild(taskCard);  \n}  \n};  \nxhr.send('id=' + id);  \n}  \n}\n```","id":"40efe2b507b2b22d","x":-1560,"y":-608,"width":480,"height":552,"color":"3"},
+		{"type":"text","text":"Notes","id":"fc8af8664757a314","x":-490,"y":-522,"width":250,"height":60,"color":"6"},
+		{"type":"text","text":"Flow Interaksi","id":"4d8d3aed34f01f1b","x":-490,"y":-705,"width":250,"height":60,"color":"5"},
+		{"type":"text","text":"Data","id":"1934862e09146a95","x":-490,"y":-617,"width":250,"height":60,"color":"3"},
+		{"type":"text","text":"Ya","id":"386c1706c2941347","x":-935,"y":-56,"width":170,"height":50,"color":"5"},
+		{"type":"text","text":"Balik ke View Awal","id":"f8c5306fc6e2f0eb","x":-580,"y":-240,"width":250,"height":68,"color":"5"},
+		{"type":"text","text":"Di view Task Card dihapus","id":"a5de47effafadb5a","x":-975,"y":15,"width":250,"height":50,"color":"5"},
+		{"type":"text","text":"```php\n<?php  \nrequire \"koneksi.php\";  \nif ($_SERVER['REQUEST_METHOD'] === 'POST') {  \n\n//get the task id and other form data  \n$id = $_POST['id'];  \n$judul = $_POST['judul'];  \n$description = $_POST['deskripsi'];  \n$tgl_tempo = $_POST['tgl_tempo'];  \n$status = 0;  \n  \n// Prepare the SQL statement to update the task  \n$stmt = $conn->prepare(\"UPDATE INTO tasks set judul=?, deskripsi=?, tgl_tempo=?, status=? WHERE id=?\");  \n  \n// Bind the parameters and execute the statement  \n$stmt->bind_param('sssii', $judul, $deskripsi, $tgl_tempo, $status, $id);  \n$stmt->execute();  \n  \n// Close the statement and database connection  \n$stmt->close();  \n$stmt->close();  \n  \n// Return a JSON response indicating a success  \nheader('Content-Type: application/json');  \necho json_encode(['success' => true]);  \n}\n```","id":"5fb5a7d9c7937835","x":-225,"y":-492,"width":460,"height":675,"color":"3"},
+		{"type":"text","text":"Karena tidak nangkep event langsung dari button maka pakenya\n```php\n$_SERVER['REQUEST_METHOD'] === 'POST'\n```","id":"a8fb48fdb458a40c","x":-120,"y":-747,"width":250,"height":190,"color":"6"}
+	],
+	"edges":[
+		{"id":"f1a75886c6117054","fromNode":"3e9a76a95c3fd170","fromSide":"top","toNode":"a932b77515bb05d2","toSide":"bottom","color":"3"},
+		{"id":"8d14c9ca22d5f79f","fromNode":"5fb5a7d9c7937835","fromSide":"top","toNode":"a8fb48fdb458a40c","toSide":"bottom","color":"6"},
+		{"id":"348ef122107a50a5","fromNode":"3e9a76a95c3fd170","fromSide":"bottom","toNode":"a15f7e5cfaea9790","toSide":"top","color":"5","label":"Clicked"},
+		{"id":"a00d831cf74f53a5","fromNode":"a15f7e5cfaea9790","fromSide":"bottom","toNode":"386c1706c2941347","toSide":"top","color":"5"},
+		{"id":"0fa1026255aa4404","fromNode":"68d7046f41c243f0","fromSide":"bottom","toNode":"f8c5306fc6e2f0eb","toSide":"top","color":"5"},
+		{"id":"cfec5792bded96ac","fromNode":"a15f7e5cfaea9790","fromSide":"left","toNode":"40efe2b507b2b22d","toSide":"right","color":"3"},
+		{"id":"595779aaea662354","fromNode":"386c1706c2941347","fromSide":"left","toNode":"40efe2b507b2b22d","toSide":"bottom","color":"3"},
+		{"id":"2cb392a79c897b76","fromNode":"ac541ffb5a8f158a","fromSide":"right","toNode":"5fb5a7d9c7937835","toSide":"left","color":"3"},
+		{"id":"5f94e77854cce73a","fromNode":"a932b77515bb05d2","fromSide":"left","toNode":"7a06c9058f0aa8c1","toSide":"right","color":"6"},
+		{"id":"75561106adb0741b","fromNode":"a15f7e5cfaea9790","fromSide":"right","toNode":"68d7046f41c243f0","toSide":"left","color":"5"},
+		{"id":"b7dca4ebb1fa3083","fromNode":"386c1706c2941347","fromSide":"right","toNode":"ac541ffb5a8f158a","toSide":"left","color":"5"},
+		{"id":"4bb0546e05add8a2","fromNode":"386c1706c2941347","fromSide":"bottom","toNode":"a5de47effafadb5a","toSide":"top","color":"5"},
+		{"id":"04e0ae03d8dd7d0b","fromNode":"a5de47effafadb5a","fromSide":"left","toNode":"40efe2b507b2b22d","toSide":"bottom","color":"3"},
+		{"id":"d0707899de0fed6e","fromNode":"40efe2b507b2b22d","fromSide":"bottom","toNode":"5fb5a7d9c7937835","toSide":"bottom","color":"3"},
+		{"id":"41d7a643b15a991a","fromNode":"a5de47effafadb5a","fromSide":"right","toNode":"f8c5306fc6e2f0eb","toSide":"left","color":"5"}
+	]
+}
