@@ -27,9 +27,10 @@ $id = $_POST['id'];
 $title = $_POST['title'];
 $description = $_POST['description'];
 $date = $_POST['date'];
-$completed = isset($_POST['completed']) ? 1 : 0;
+$completed = isset($_POST['completed']) && $_POST['completed'] === 'completed' ? 1 : 0;
 
 // Update the task in the database
 mysqli_query($conn, "UPDATE tasks SET judul = '$title', deskripsi = '$description', tgl_tempo = '$date', completed = $completed WHERE id = $id");
 
 header("location: ../welcome.php");
+die();
