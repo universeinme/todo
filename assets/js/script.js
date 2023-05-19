@@ -177,6 +177,17 @@ function editTask(id) {
 	};
 	xhr.open('GET', './funcs/pilih_task.php?id=' + id, true);
 	xhr.send();
+
+	var taskCompletedCheckbox = document.getElementById('task-completed');
+	var taskCompletedHiddenInput = document.getElementById('task-completed-hidden');
+
+	taskCompletedCheckbox.addEventListener('change', function () {
+		if (taskCompletedCheckbox.checked) {
+			taskCompletedHiddenInput.value = 'completed';
+		} else {
+			taskCompletedHiddenInput.value = '';
+		}
+	});
 }
 
 
