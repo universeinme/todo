@@ -1,2 +1,4 @@
 .idea/
 .prepros.config
+hs_err*.log
+replay*.log
