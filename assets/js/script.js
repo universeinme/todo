@@ -151,6 +151,9 @@ function hapusTask(id) {
 	}
 }
 
+// Show the modal dialog
+var modal = document.getElementById('edit-modal');
+
 function editTask(id) {
 
 	// Get the task data from the server using AJAX
@@ -165,6 +168,10 @@ function editTask(id) {
 			document.getElementById('task-title').value = task.judul;
 			document.getElementById('task-description').value = task.deskripsi;
 			document.getElementById('task-date').value = task.tgl_tempo;
+			document.getElementById('task-completed').checked = task.completed === '1';
+
+			// Open the modal
+			modal.classList.remove('hidden');
 
 		}
 	};
@@ -172,13 +179,21 @@ function editTask(id) {
 	xhr.send();
 }
 
-// Show the modal dialog
-var modal = document.getElementById('edit-modal');
 
-// Open modal
+/*// Open modal
 var openModal = document.querySelector('#open-modal');
 openModal.addEventListener('click', () => {
 	modal.classList.remove('hidden');
+});*/
+
+// Attach event listeners to each edit button
+var editButtons = document.querySelectorAll('.edit-button');
+editButtons.forEach((button) => {
+	button.addEventListener('click', () => {
+		// Get the ID of the task associated with the clicked button
+		var id = button.getAttribute('data-task-id');
+		editTask(id);
+	});
 });
 
 // Close modal

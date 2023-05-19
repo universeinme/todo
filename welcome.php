@@ -72,6 +72,11 @@
           <input type="date" name="date" id="task-date"
                  class="block w-full bg-gray-100 p-2 mt-2 mb-3 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                  required>
+
+
+          <input type="hidden" name="completed" value="">
+          <label for="task-completed">Done?</label>
+          <input type="checkbox" name="completed" id="task-completed" value="completed">
         </div>
 
         <!-- Modal footer -->

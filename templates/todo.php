@@ -4,7 +4,7 @@ require "funcs/koneksi.php";
 $id = $_SESSION['username'];
 
 // narik data
-$query = "SELECT tasks.id, users.username, tasks.user_id, tasks.judul, tasks.deskripsi, tasks.tgl_tempo, tasks.status FROM users INNER JOIN tasks ON users.id=tasks.user_id WHERE users.username='$id'";
+$query = "SELECT tasks.id, users.username, tasks.user_id, tasks.judul, tasks.deskripsi, tasks.tgl_tempo, tasks.completed FROM users INNER JOIN tasks ON users.id=tasks.user_id WHERE users.username='$id'";
 
 $tampilNarik = mysqli_query($conn, $query);
 ?>
@@ -13,6 +13,7 @@ $tampilNarik = mysqli_query($conn, $query);
 <?php
 if (mysqli_num_rows($tampilNarik) >0 ) {
   foreach ($tampilNarik as $task) { ?>
+    <?php $id = $task['id']; ?>
     <div
          class="task-card flex flex-col bg-white drop-shadow hover:drop-shadow-lg  rounded-md break-words">
       <div class="border-gray-300 border-b-2 border-solid flex flex-col relative m-1 px-2">
@@ -25,13 +26,23 @@ if (mysqli_num_rows($tampilNarik) >0 ) {
           <?php echo $task['deskripsi']; ?>
         </p>
       </div>
-      <div class="px-2 m-1">
-        <p class="task-date relative">
+      <div class="grid grid-cols-4 px-2 m-1">
+        <p class="col-span-2 task-date">
           Tempo: <?php echo $task['tgl_tempo']; ?>
         </p>
+        <div class="col-span-2 place-self-end float-right">
+          <input id="status" class="task-completed peer/draft" type="checkbox" name="status" <?php if ($task['completed'] == '1') {
+            echo 'checked';
+          } else {
+            echo 'unchecked';
+          }?>>
+          <label for="status draft" class="px-1 peer-checked:underline peer-checked:underline-offset-2 peer-checked/draft:font-semibold peer-checked/draft:transition-colors duration-300 peer-checked/draft:ease-in-out peer-checked/draft:bg-sky-300">
+            <span>Done</span>
+          </label>
+        </div>
       </div>
       <div class="px-2 m-1 mb-2">
-        <button id="open-modal" type="button" class="group relative w-16 overflow-hidden rounded-lg bg-white shadow" onclick="editTask(<?php echo $task['id']; ?>)">
+        <button id="open-modal" type="button" class="group relative w-16 overflow-hidden rounded-lg bg-white shadow" onclick="editTask(<?php echo $id; ?>)" data-task-id="<?php echo $id; ?>">
           <div class="absolute inset-0 w-3 bg-sky-300 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
           <span class="relative text-black group-hover:text-white">Edit</span>
         </button>

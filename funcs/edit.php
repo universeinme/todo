@@ -6,7 +6,7 @@ require "koneksi.php";
     $judul = $_POST['judul'];
     $description = $_POST['deskripsi'];
     $tgl_tempo = $_POST['tgl_tempo'];
-    $status = 0;
+    $completed = $_POST['status'];
 
     // Prepare the SQL statement to update the task
     $stmt = $conn->prepare("UPDATE INTO tasks set judul=?, deskripsi=?, tgl_tempo=?, status=? WHERE id=?");
@@ -27,8 +27,9 @@ $id = $_POST['id'];
 $title = $_POST['title'];
 $description = $_POST['description'];
 $date = $_POST['date'];
+$completed = isset($_POST['completed']) ? 1 : 0;
 
 // Update the task in the database
-mysqli_query($conn, "UPDATE tasks SET judul = '$title', deskripsi = '$description', tgl_tempo = '$date' WHERE id = $id");
+mysqli_query($conn, "UPDATE tasks SET judul = '$title', deskripsi = '$description', tgl_tempo = '$date', completed = $completed WHERE id = $id");
 
 header("location: ../welcome.php");
