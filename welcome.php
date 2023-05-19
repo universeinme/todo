@@ -74,9 +74,9 @@
                  required>
 
 
-          <input type="hidden" name="completed" value="">
+          <input type="hidden" name="completed" id="task-completed-hidden" value="0">
           <label for="task-completed">Done?</label>
-          <input type="checkbox" name="completed" id="task-completed" value="completed">
+          <input type="checkbox" name="task-completed" id="task-completed" value="completed">
         </div>
 
         <!-- Modal footer -->
