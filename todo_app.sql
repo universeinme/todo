@@ -34,14 +34,14 @@ CREATE TABLE `tasks` (
   `judul` text NOT NULL,
   `deskripsi` text NOT NULL,
   `tgl_tempo` date NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `completed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `user_id`, `judul`, `deskripsi`, `tgl_tempo`, `status`) VALUES
+INSERT INTO `tasks` (`id`, `user_id`, `judul`, `deskripsi`, `tgl_tempo`, `completed`) VALUES
 (1, 5, 'Judul Todo', 'Isi deskripsi todo', '2023-05-17', 0),
 (2, 5, 'Judul #2', 'Deskripsi #2', '2023-05-27', 0),
 (3, 6, 'Judul #5', 'Deskripsi #5', '2023-05-30', 0),
